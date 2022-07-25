@@ -45,6 +45,9 @@ model = pickle.load(open('model/ModelClassifier.pkl', 'rb'))
      
         
         
+        
+        
+        
 
 ##  La premiere endpoint  / URI  /   Route 
 @app.route('/')
@@ -110,10 +113,10 @@ def prediction_credit(id_client):
 #  lancement de l'application   (  mode local  et non en mode production  ) 
 
 if __name__ == "__main__":
-    ## uvicorn.run(app = '127.0.0.1', port = 8000, debug = True)
-    ## app.run(host = 'localhost', port = 8088, debug = True)
+    #### uvicorn.run(app = 'localhost', port = 8000, debug = True)
+    ##app.run(host = 'localhost', port = 8088, debug = True)
     ## from waitress import serve
-    ##serve(app, host="0.0.0.0", port=8080)
+    ## serve(app, host="0.0.0.0", port=8080)
     app.run(debug=True)
     ##app.run()
 
