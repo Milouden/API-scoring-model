@@ -17,10 +17,10 @@ warnings.filterwarnings("ignore", category=UserWarning)
 app = Flask(__name__)
 
 PATH = 'dataset/'
-#      Chargement des données 
+#Chargement des données 
 
-#    data = pd.read_csv('dataset/test_dataframe.csv')
-data = pd.read_parquet('dataset/test_df.parquet')
+# data = pd.read_csv('dataset/test_dataframe.csv')
+data = pd.read_parquet(PATH+'test_df.parquet')
 print('la taille de Dataframe est = ', data.shape)
 
 #data.drop(columns = {'Unnamed: 0'}  , inplace = True)
@@ -37,33 +37,31 @@ model = pickle.load(open('model/ModelClassifier.pkl', 'rb'))
 ## app = FastAPI()
 
 
-
-##    app = FastAPI()
-##    class Sentiment(BaseModel):
-##    sentiment: str
-##    sentiment_probability: float
-     
-        
-        
-        
+'''
+app = FastAPI()
+class Sentiment(BaseModel):
+    sentiment: str
+    sentiment_probability: float
+'''        
         
         
 
 ##  La premiere endpoint  / URI  /   Route 
 @app.route('/')
 def index():
+    ##  return {'message': 'Hello Everyone ,  This is my Web API for credit scoring '}
     return {'Hello Everyone ,  This is my Web API for credit scoring '}
 
 
 
         
-
+'''
 ##  La premiere endpoint  / URI  /   Route 
-## @app.get('/{name}')
-##  get_name(name:str):
-##     return {'message': f'Hello , {name}'}
+@app.get('/{name}')
+def get_name(name:str):
+    return {'message': f'Hello , {name}'}
 
-
+'''
 
 ##  La deuxieme endpoint  / URI  /   Route 
 @app.route('/prediction_credit/<id_client>')
@@ -113,12 +111,13 @@ def prediction_credit(id_client):
 #  lancement de l'application   (  mode local  et non en mode production  ) 
 
 if __name__ == "__main__":
-    #### uvicorn.run(app = 'localhost', port = 8000, debug = True)
-    ##app.run(host = 'localhost', port = 8088, debug = True)
+    ## uvicorn.run(app = '127.0.0.1', port = 8000, debug = True)
+    ##  code secret ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    ## app.run(host = 'localhost', port = 8088, debug = True)
     ## from waitress import serve
-    ## serve(app, host="0.0.0.0", port=8080)
-    app.run(debug=True)
-    ##app.run()
+    ##serve(app, host="0.0.0.0", port=8080)
+    ##app.run(debug=True)
+    app.run()
 
 ## uvicorn app:app --reload
     
