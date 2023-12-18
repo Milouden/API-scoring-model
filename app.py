@@ -1,6 +1,7 @@
 #Api import
 import joblib
 import re
+import os  # Add this import at the beginning of your file
 
 #import uvicorn 
 #from fastapi import FastAPI
@@ -110,14 +111,13 @@ def prediction_credit(id_client):
 
 #  lancement de l'application   (  mode local  et non en mode production  ) 
 
-if __name__ == "__main__":
-    ## uvicorn.run(app = '127.0.0.1', port = 8000, debug = True)
-    ##  code secret ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    ## app.run(host = 'localhost', port = 8088, debug = True)
-    ## from waitress import serve
-    ##serve(app, host="0.0.0.0", port=8080)
-    ##app.run(debug=True)
-    app.run()
 
-## uvicorn app:app --reload
-    
+# ... [rest of your code] ...
+
+# The last part of your app.py should look like this:
+
+if __name__ == "__main__":
+    # Set the port dynamically with a default of 5000 for local development
+    port = int(os.environ.get('PORT', 5000))
+    # Run the app on all available interfaces on the port assigned by Heroku or default to 5000
+    app.run(host='0.0.0.0', port=port, debug=True)    
